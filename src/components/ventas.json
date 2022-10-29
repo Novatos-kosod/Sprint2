@@ -1,0 +1,68 @@
+[
+    {
+        "id":0,
+        "producto":"Producto",
+        "precio":"Precio",
+        "cantidad": "Cantidad vendida"
+    },
+    {
+        "id":1,
+        "producto":"Leche",
+        "precio":3400,
+        "cantidad": 130
+    },
+    {
+        "id":2,
+        "producto":"Melon",
+        "precio":2800,
+        "cantidad": 120
+    },
+    {
+        "id":3,
+        "producto":"Panela",
+        "precio":1200,
+        "cantidad": 190
+    },
+    {
+        "id":4,
+        "producto":"Arroz",
+        "precio":2500,
+        "cantidad": 340
+    },
+    {
+        "id":5,
+        "producto":"Fresas",
+        "precio":4200,
+        "cantidad": 98
+    },
+    {
+        "id":6,
+        "producto":"Azucar",
+        "precio":3100,
+        "cantidad": 272
+    },
+    {
+        "id":7,
+        "producto":"Sal",
+        "precio":1100,
+        "cantidad": 251
+    },
+    {
+        "id":8,
+        "producto":"Frijol",
+        "precio":5200,
+        "cantidad": 139
+    },
+    {
+        "id":9,
+        "producto":"Mantequilla",
+        "precio":3821,
+        "cantidad": 58
+    },
+    {
+        "id":10,
+        "producto":"Huevos",
+        "precio":600,
+        "cantidad": 500
+    }
+]
