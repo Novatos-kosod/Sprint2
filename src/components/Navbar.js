@@ -86,7 +86,7 @@ const Navbar = () => {
                     <i className="fas fa-shopping-cart"></i>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {
-                        cart.length
+                        cart ? cart.length : 0
                         }
                       <span className="visually-hidden">quantity</span>
                     </span>
