@@ -1,11 +1,5 @@
 [
     {
-        "id":0,
-        "producto":"Producto",
-        "precio":"Precio",
-        "cantidad": "Cantidad vendida"
-    },
-    {
         "id":1,
         "producto":"Leche",
         "precio":3400,
