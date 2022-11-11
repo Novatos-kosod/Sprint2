@@ -23,8 +23,9 @@ return (
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Price</th>
-                <th>Cantidad</th>
+                <th>Price unitario</th>
+                <th>Cantidad vendida</th>
+                <th>precio total</th>
               </tr>
             </thead>
             <tbody>
@@ -32,8 +33,9 @@ return (
                 sales.map((product) => (
                   <tr key={product.id}> 
                     <td>{product.producto}</td>
-                    <td>{product.precio}</td>
-                    <td>{product.cantidad}</td>
+                    <td>{product.preciounitario}</td>
+                    <td>{product.cantidadvendida}</td>
+                    <td>{product.preciototal}</td>
                   <td></td>
                   </tr>
                 ))

@@ -1,49 +1,94 @@
 {
   "productos": [
     {
-      "id": "GGOEAFKA087499",
-      "urlImagen": "https://i.blogs.es/27b569/telefono/450_1000.jpeg",
-      "name": "Android Small Removable Sticker Sheet",
-      "description": "Show your Android pride by placing these 8 fun stickers on your technology products or accessories!",
+      "id": 1,
+      "urlImagen": "https://alival.com.co/express/wp-content/uploads/2020/05/Diseno-sin-titulo-71.png",
+      "name": "leche",
+      "description": "Leche fresca que ha sido sometida al proceso de ultrapasteurización (UHT)",
       "features": "<p>8 Android stickers</p>\n<p>White colored sticker sheet</p>",
-      "price": "2.99",
-      "stock": 1
+      "price": 3400,
+      "cantidad": 1200
     },
     {
-      "id": "GGOEAFKA08759945",
-      "urlImagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik's_cube.svg/240px-Rubik's_cube.svg.png",
-      "name": "Android Large Removable Sticker Sheet",
-      "description": "Show your quirky side by placing these fun Android stickers on your personal belongings.",
+      "id": 2,
+      "urlImagen": "https://tienda306.com/blog/wp-content/uploads/2021/09/Melon-honeydew-portada.jpg",
+      "name": "Melon",
+      "description": "Melón nos aporta agua, vitaminas A, B, C y E, ácido fólico, fibra, además de minerales como calcio, hierro y potasio",
       "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
-      "price": "2.99",
-      "stock": 1
+      "price": 2800,
+      "cantidad": 2780
     },
     {
-      "id": "GGOEAFKA55087599",
-      "urlImagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik's_cube.svg/240px-Rubik's_cube.svg.png",
-      "name": "Android Large Removable Sticker Sheet",
-      "description": "Show your quirky side by placing these fun Android stickers on your personal belongings.",
+      "id": 3,
+      "urlImagen": "https://lacanasta.co/wp-content/uploads/2019/08/panela-1.jpg",
+      "name": "panela",
+      "description": "La panela es un tipo de azúcar extraído directamente del jugo de la caña de azúcar",
       "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
-      "price": "2.99",
-      "stock": 1
+      "price": 1200,
+      "cantidad": 789
     },
     {
-      "id": "GG445OEAFKA087599",
-      "urlImagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik's_cube.svg/240px-Rubik's_cube.svg.png",
-      "name": "Android Large Removable Sticker Sheet",
-      "description": "Show your quirky side by placing these fun Android stickers on your personal belongings.",
+      "id": 4,
+      "urlImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9JSbaiMu2AsErmsbNFHQKPNpGj3PH6S0BMQ&usqp=CAU",
+      "name": "Arroz",
+      "description": "Es un cereal y un alimento indispensable para una dieta sana y equilibrad",
       "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
-      "price": "2.99",
-      "stock": 1
+      "price": 2500,
+      "cantidad": 256
     },
     {
-      "id": "GGOEAFKA656087599",
-      "urlImagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik's_cube.svg/240px-Rubik's_cube.svg.png",
-      "name": "Android Large Removable Sticker Sheet",
-      "description": "Show your quirky side by placing these fun Android stickers on your personal belongings.",
+      "id": 5,
+      "urlImagen": "https://cdn.shopify.com/s/files/1/0267/9200/1582/files/10-Beneficios-De-Las-Fresas.jpg?v=1654788193",
+      "name": "Fresas",
+      "description": "Tiene un excelente sabor y es ligera, ya que el 85% de su composición es agua",
       "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
-      "price": "2.99",
-      "stock": 1
+      "price": 4200,
+      "cantidad": 5612
+    },
+    {
+      "id": 6,
+      "urlImagen": "https://empresasiansa.cl/azucar-iansa/wp-content/uploads/sites/4/2020/03/Iansa-azucar-bolsa-1k-752x1024.jpg",
+      "name": "Azúcar",
+      "description": "Es el producto sólido derivado de la caña de azúcar",
+      "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
+      "price": 3100,
+      "cantidad": 1345
+    },
+    {
+      "id":7,
+      "urlImagen": "https://carulla.vtexassets.com/arquivos/ids/7287576/Sal-Marina-X-800g-88633_a.jpg?v=637840946793630000",
+      "name": "Sal",
+      "description": "Consistente en cloruro sódico , ordinariamente blanca , cristalina , de sabor propio , muy soluble en agua",
+      "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
+      "price": 1100,
+      "cantidad": 1345
+    },
+    {
+      "id": 8,
+      "urlImagen": "https://s.cornershopapp.com/product-images/2034809.jpg?versionId=jJxZwzM0xxR9mHQo2l9DKbZhSYay4VdX",
+      "name": "Frijol",
+      "description": "Alto contenido de proteínas y micronutrientes como el hierro y el ácido fólico",
+      "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
+      "price": 5200,
+      "cantidad": 2398
+    },
+    {
+      "id": 9,
+      "urlImagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/192970/7702129030250-282-29.jpg?v=637814023145970000",
+      "name": "mantequilla",
+      "description": "Derivado lácteo con un elevado contenido graso, derivado exclusivamente de la leche o de determinados productos lácteos",
+      "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
+      "price": 3821,
+      "cantidad": 5671
+    },
+    {
+      "id": 10,
+      "urlImagen": "https://imagenes.elpais.com/resizer/WbGquU3QqzO4wKqOro4OCTAEJvw=/1960x1470/cloudfront-eu-central-1.images.arcpublishing.com/prisa/ELQCA53HMH6YZ3MYEWF7ERMVKE.jpg",
+      "name": "Huevos",
+      "description": "Estos huevos grandes pueden venir con doble yema, debido a una doble ovulación del ave",
+      "features": "<p>Android Stickers</p>\n<p>White Colored Sticker Sheet</p>",
+      "price": 600,
+      "cantidad": 10238
     }
   ]
 }

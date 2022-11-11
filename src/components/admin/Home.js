@@ -76,10 +76,19 @@ return (
               className="form-control"
               name="description"
               id="description"
-            ></textarea>
+            ></textarea> 
+            
+            <label for="price">stock</label>
+            <input
+              className="form-control"
+              type="text"
+              name="stock"
+              id="stock"
+            />
 
             <button className="btn btn-primary mt-4" type="submit">
               Add Product
+              
             </button>
           </form>
         </div>
