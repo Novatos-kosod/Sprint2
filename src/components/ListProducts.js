@@ -47,8 +47,8 @@ const ListProducts = () => {
       <div className="container">
         <div className="row">
           {products.map((product) => (
-            <div className="col-md-4" key={product.id}>
-              <div className="card mt-3 py-2" style={{ width: "18rem" }}>
+            <div className="col-md-3" key={product.id}>
+              <div className="card mt-2 py-4" style={{ width: "17rem" }}>
                 <img
                   className="img-fluid"
                   src={product.urlImagen}
