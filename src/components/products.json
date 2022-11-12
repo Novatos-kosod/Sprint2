@@ -124,6 +124,22 @@
       "features": "<p>8 Android stickers</p>\n<p>White colored sticker sheet</p>",
       "price": 2800,
       "cantidad": 24
+    },
+    {
+      "id": 0.3899942564908665,
+      "name": "Bocadillo Veleño",
+      "image": "https://www.distri-latina.ch/wp-content/uploads/2021/04/Bocadillo-vele%C3%B1o-caja-madera.png",
+      "features": "proteina",
+      "price": "1200",
+      "description": "Delicioso y saludable"
+    },
+    {
+      "id": 0.98461535368223,
+      "name": "veleño",
+      "urlImagen": "https://www.distri-latina.ch/wp-content/uploads/2021/04/Bocadillo-vele%C3%B1o-caja-madera.png",
+      "features": "proteina",
+      "price": "1200",
+      "description": "delicisoo"
     }
   ]
 }

@@ -14,9 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "server_ventas": "json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/ventas.json",
-    "server_products": "json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/products.json",
-    "server_users": "json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/users.json",
+    "server_ventas": "json-server --watch C:/Users/catik/OneDrive/Documentos/Sprint2.0/Sprint2/src/components/ventas.json",
+    "server_products": "json-server --watch C:/Users/catik/OneDrive/Documentos/Sprint2.0/Sprint2/src/components/products.json",
+    "server_users": "json-server --watch C:/Users/catik/OneDrive/Documentos/Sprint2.0/Sprint2/src/components/users.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

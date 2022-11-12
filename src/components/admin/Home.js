@@ -16,7 +16,7 @@ export const Home = () => {
     const product = {
       id: Math.random(),
       name: e.target.name.value,
-      image: e.target.image.value,
+      urlImagen: e.target.urlImagen.value,
       features: e.target.features.value,
       price: e.target.price.value,
       description: e.target.description.value,
@@ -72,12 +72,12 @@ export const Home = () => {
                 id="price"
               />
 
-              <label for="image">Image</label>
+              <label for="urlImagen">Image</label>
               <input
                 className="form-control"
                 type="text"
-                name="image"
-                id="image"
+                name="urlImagen"
+                id="urlImagen"
               />
 
               <label for="description">Description</label>
