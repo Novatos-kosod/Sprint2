@@ -115,6 +115,15 @@
       "features": "<p>8 Android stickers</p>\n<p>White colored sticker sheet</p>",
       "price": 3400,
       "cantidad": 1200
+    },
+    {
+      "id": 13,
+      "urlImagen": "https://definicion.de/wp-content/uploads/2013/01/papa.jpg",
+      "name": "Papa",
+      "description": "Carbohidrato producido en la tierra por los agricultores Colombianos",
+      "features": "<p>8 Android stickers</p>\n<p>White colored sticker sheet</p>",
+      "price": 2800,
+      "cantidad": 24
     }
   ]
 }

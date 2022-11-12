@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
@@ -13,9 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "server_ventas":"json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/ventas.json",
-    "server_products":"json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/products.json",
-    "server_users":"json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/users.json",
+    "server_ventas": "json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/ventas.json",
+    "server_products": "json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/products.json",
+    "server_users": "json-server --watch C:/Users/jeica/OneDrive/Documentos/PERSONAL/DESARROLLO_WEB/PROYECTO_CURSO/Sprint2/src/components/users.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
