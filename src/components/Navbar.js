@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
+  const [sales, setSales] = useState(null);
   const [cart, setCart] = useState([]);
 
   const logout = () => {
@@ -11,9 +12,16 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("user"));
-    if (data) {
-      setUser(data);
+    const sales = JSON.parse(localStorage.getItem("sales"));
+    if (sales) {
+      setSales(sales);
+    }
+  }, []);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUser(user);
     }
   }, []);
 
