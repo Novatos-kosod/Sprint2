@@ -1,27 +1,32 @@
 import React, {useState,useEffect} from "react";
-import ListProducts from "../products.json";
 
 export const Home = () => {
 
     const [products, setProducts] = useState([])
 
     useEffect(() => { 
-        setProducts(ListProducts['productos'])
-        console.log(products)
-    }, [products])
+      getProducts()
+    }, [])
 
+  const getProducts = () => {
+    fetch("http://localhost:3001/productos")
+        .then(res => res.json())
+        .then(data => {
+            setProducts(data)
+        }).catch(err => console.log(err))
+  };
 
   const saveProduct = (e) => {
     e.preventDefault();
     const product = {
-      id: Math.random(),
       name: e.target.name.value,
       urlImagen: e.target.urlImagen.value,
       features: e.target.features.value,
       price: e.target.price.value,
       description: e.target.description.value,
+      cantidad: e.target.stock.value,
     };
-    fetch("http://localhost:3000/productos", {
+    fetch("http://localhost:3001/productos", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,15 +36,22 @@ export const Home = () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      alert("Producto agregado");
+      getProducts();
     }
     );
 
-    alert("Producto agregado");
+    
   };
 
   const deleteProduct = (id) => {
-    const newProducts = products.filter((product) => product.id !== id);
-    setProducts(newProducts);
+    fetch(`http://localhost:3001/productos/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <>
@@ -48,7 +60,7 @@ export const Home = () => {
         <div className="row">
           <div className="col-md-4">
             <form onSubmit={saveProduct}>
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 className="form-control"
                 type="text"
@@ -56,7 +68,7 @@ export const Home = () => {
                 id="name"
               />
 
-              <label for="features">Features</label>
+              <label htmlFor="features">Features</label>
               <input
                 className="form-control"
                 type="text"
@@ -64,7 +76,7 @@ export const Home = () => {
                 id="features"
               />
 
-              <label for="price">Price</label>
+              <label htmlFor="price">Price</label>
               <input
                 className="form-control"
                 type="text"
@@ -72,7 +84,7 @@ export const Home = () => {
                 id="price"
               />
 
-              <label for="urlImagen">Image</label>
+              <label htmlFor="urlImagen">Image</label>
               <input
                 className="form-control"
                 type="text"
@@ -80,14 +92,14 @@ export const Home = () => {
                 id="urlImagen"
               />
 
-              <label for="description">Description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 className="form-control"
                 name="description"
                 id="description"
               ></textarea> 
               
-              <label for="price">stock</label>
+              <label htmlFor="stock">stock</label>
               <input
                 className="form-control"
                 type="text"

@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react'
 
 
-const Cart = () => {
-    const [cart, setCart] = useState([])
+const Cart = (props) => {
+    const {cart, setCart} = props;
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        setCart(JSON.parse(localStorage.getItem('cart')))
+        if(localStorage.getItem('cart')){
+            setCart(JSON.parse(localStorage.getItem('cart')))
+        }
     }, [])
     
     const deleteProduct = (id) => {
@@ -38,6 +40,44 @@ const Cart = () => {
         setTotal(total)
     }
 
+    const updateStocks = () => {
+      cart.forEach(product => {
+        let newStock = product.cantidad - product.quantity
+        fetch(`http://localhost:3001/productos/${product.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({cantidad: newStock})
+      }) 
+      .catch(err => console.log(err))
+      })
+    }
+
+    const buy = () => {
+      let newSales = {
+        products: cart,
+        total: total,
+        fecha: new Date()
+      }
+        fetch('http://localhost:3001/ventas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newSales)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            updateStocks()
+            localStorage.removeItem('cart')
+            setCart([])
+            alert('Compra realizada con exito')
+        }
+        )
+    }
+
     useEffect(() => { 
         getTotal()
     }, [cart])
@@ -54,6 +94,7 @@ const Cart = () => {
                   <th>Name</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Subtotal</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -63,13 +104,14 @@ const Cart = () => {
                 cart.map((product) => (
                   <tr key={product.id}>
                     <td>{product.name}</td>
-                    <td>{product.price * product.quantity}</td>
+                    <td>{product.price}</td>
                     <td>
                     {/* change quantity buttons */}
                     <button className="btn btn-outline-info" onClick={() => onChangeQuantity(product.id, product.quantity - 1)}>-</button>
                     <span className="mx-2">{product.quantity}</span>
                     <button className="btn btn-outline-success" onClick={() => onChangeQuantity(product.id, product.quantity + 1)}>+</button>
                     </td>
+                    <td>{product.price * product.quantity}</td>
                     <td>
                       <button className="btn btn-danger" onClick={() => deleteProduct(product.id)}>
                         <i className="fa fa-trash"></i>
@@ -79,7 +121,7 @@ const Cart = () => {
               ))
               ) : (
                 <tr>
-                  <td colSpan="4">No products in cart</td>
+                  <td colSpan="5">No products in cart</td>
                 </tr>
               )
           }
@@ -95,8 +137,9 @@ const Cart = () => {
           {
               cart.length > 0 && (
                 <div className="col-md-6 mt-4">
-                    <button className="btn btn-success">Comprar</button>
-                    
+                    <button className="btn btn-success" onClick={() => buy()}>
+                        Comprar
+                    </button>
                   </div>
               )
           }

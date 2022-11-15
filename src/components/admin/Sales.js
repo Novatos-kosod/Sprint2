@@ -1,51 +1,77 @@
-import React, { useState, useEffect }from 'react'
-import SalesJson from '../ventas.json'
+import React, { useState, useEffect } from "react";
 
-const Sales = () => {
-
-    const [sales, setSales] = useState([]);
-
-    useEffect(() => {
-        setSales(SalesJson["ventas"])
-        console.log(sales)
-    }, [sales])
+const ShowDetails = (props) => {
+  const { products } = props;
 
   return (
     <>
-        <div className="container py-4">
-            <h3>Sales</h3>
+      <div className="col-md-4">
+        <h3>Details</h3>
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>
+             {product.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+};
 
-            <div className="row">
-                <div className="col-md-8">
-                <table className="table table-striped">
+const Sales = () => {
+  const [sales, setSales] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/ventas")
+      .then((res) => res.json())
+      .then((data) => {
+        setSales(data);
+      });
+  }, []);
+
+  // console.log(sales)
+  return (
+    <>
+      <div className="container py-4">
+        <h3>Sales</h3>
+
+        <div className="row">
+          <div className="col-md-8">
+            <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Cantidad</th>
-                  <th>Precio Total</th>
+                  <th scope="col">Id</th>
+                  <th scope="col">date</th>
+                  <th scope="col">total</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {
-                  sales.map((product) => (
-                    <tr key={product.id}> 
-                      <td>{product.producto}</td>
-                      <td>{product.preciounitario}</td>
-                      <td>{product.cantidadvendida}</td>
-                      <td>{product.preciototal}</td>
-                    <td></td>
-                    </tr>
-                  ))
-                }
+                {sales.map((sale) => (
+                  <tr key={sale.id}>
+                    <th scope="row">{sale.id}</th>
+                    <td>{sale.fecha}</td>
+                    <td>{sale.total}</td>
+                    <td>
+                      <button
+                        className="btn btn-info"
+                        onClick={() => setProducts(sale.products)}
+                      >
+                        Details
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
-            </div>
-            </div>
+          </div>
+          <ShowDetails products={products} />
         </div>
-        
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Sales
+export default Sales;
