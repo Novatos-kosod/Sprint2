@@ -11,12 +11,14 @@ const Cart = (props) => {
         }
     }, [])
     
+    // borra un producto del carrito
     const deleteProduct = (id) => {
         let newCart = cart.filter(product => product.id !== id)
         setCart(newCart)
         localStorage.setItem('cart', JSON.stringify(newCart))
     }
 
+    // actualiza la cantidad de productos en el carrito
     const onChangeQuantity = (id, quantity) => {
         let newCart = cart.map(product => {
             if(product.id === id && quantity <= product.cantidad) {
@@ -31,7 +33,10 @@ const Cart = (props) => {
             localStorage.setItem('cart', JSON.stringify(newCart))
         }
     }
-
+    
+   /*
+    * Calcula el total de la compra.
+    */
     const getTotal = () => {
         let total = 0
         cart.forEach(product => {
@@ -40,6 +45,7 @@ const Cart = (props) => {
         setTotal(total)
     }
 
+    // actualiza el stock de los productos
     const updateStocks = () => {
       cart.forEach(product => {
         let newStock = product.cantidad - product.quantity
@@ -54,6 +60,7 @@ const Cart = (props) => {
       })
     }
 
+    // registra la compra
     const buy = () => {
       let newSales = {
         products: cart,
@@ -79,7 +86,7 @@ const Cart = (props) => {
     }
 
     useEffect(() => { 
-        getTotal()
+        getTotal()  
     }, [cart])
 
   return (

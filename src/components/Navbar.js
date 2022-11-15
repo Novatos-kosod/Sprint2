@@ -5,6 +5,9 @@ const Navbar = (props) => {
   const {cart ,user, setUser} = props;
   const navigate = useNavigate();
 
+  /** 
+   * Cierra la sesión del usuario.
+  */
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);

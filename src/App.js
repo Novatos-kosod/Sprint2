@@ -13,6 +13,8 @@ function App() {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
 
+  /* hook que se llama cuando se monta el componente. Se utiliza para obtener el usuario del  local storage
+  y el cart del  local storage. */
   useEffect(() => {
     getUser();
     if (localStorage.getItem("cart")) {
@@ -20,12 +22,19 @@ function App() {
     }
   }, []);
 
+  /**
+   * setea el usuario.
+   */
   const getUser = () => {
     if (localStorage.getItem("user")) {
       setUser(JSON.parse(localStorage.getItem("user")));
     }
   }
 
+  /**
+   *  Obtiene los datos del servidor y 
+   *  los guarda en el estado products.
+   */
   const getProducts = () => {
     fetch("http://localhost:3001/productos")
         .then(res => res.json())
@@ -34,24 +43,28 @@ function App() {
         }).catch(err => console.log(err))
   };
 
+  /**
+   * Agrega un producto al carrito.
+   * @param {Object} product
+   */
   const addToCart = (id) => {
     const product = products.find((product) => product.id === id);
     if (product) {
-      if (cart.find((product) => product.id === id)) {
+      if (cart.find((product) => product.id === id)) { // si el producto ya esta en el carrito
         setCart(
           cart.map((product) => {
-            if (product.id === id) {
+            if (product.id === id) { 
               product.quantity++;
-              localStorage.setItem("cart", JSON.stringify(cart));
+              localStorage.setItem("cart", JSON.stringify(cart)); // actualiza el carrito en el local storage
             }
             return product;
           })
         );
       } else {
-        setCart([...cart, { ...product, quantity: 1 }]);
+        setCart([...cart, { ...product, quantity: 1 }]); // agrega el producto al carrito
         localStorage.setItem(
           "cart",
-          JSON.stringify([...cart, { ...product, quantity: 1 }])
+          JSON.stringify([...cart, { ...product, quantity: 1 }]) // actualiza el carrito en el local storage
         );
       }
     }

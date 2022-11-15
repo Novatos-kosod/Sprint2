@@ -8,6 +8,10 @@ export const Home = () => {
       getProducts()
     }, [])
 
+  /**
+   *  Obtiene los datos del servidor y 
+   *  los guarda en el estado products.
+   */
   const getProducts = () => {
     fetch("http://localhost:3001/productos")
         .then(res => res.json())
@@ -16,6 +20,7 @@ export const Home = () => {
         }).catch(err => console.log(err))
   };
 
+  // regisra un producto
   const saveProduct = (e) => {
     e.preventDefault();
     const product = {
@@ -26,6 +31,7 @@ export const Home = () => {
       description: e.target.description.value,
       cantidad: e.target.stock.value,
     };
+    
     fetch("http://localhost:3001/productos", {
     method: "POST",
     headers: {
@@ -40,10 +46,12 @@ export const Home = () => {
       getProducts();
     }
     );
-
-    
   };
 
+  /**
+    * Elimina un producto.
+    * @param {Number} id
+  */
   const deleteProduct = (id) => {
     fetch(`http://localhost:3001/productos/${id}`, {
       method: "DELETE",

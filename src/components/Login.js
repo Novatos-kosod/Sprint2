@@ -1,11 +1,15 @@
 import react from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Users from "./users.json";
 
 function Login(props) {
   const navigate = useNavigate();
   const { setUser } = props;
 
+  /**
+   * Verifica que el usuario y la contraseña sean correctos.
+   * @param {Object} e
+   */
   const login = (e) => {
     e.preventDefault();
     const user = Users.users.find(

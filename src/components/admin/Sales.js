@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const ShowDetails = (props) => {
   const { products } = props;
-
+  
   return (
     <>
       <div className="col-md-4">
@@ -23,6 +23,7 @@ const Sales = () => {
   const [sales, setSales] = useState([]);
   const [products, setProducts] = useState([]);
 
+  // llamada a la api para obtener las ventas
   useEffect(() => {
     fetch("http://localhost:3001/ventas")
       .then((res) => res.json())
@@ -67,7 +68,8 @@ const Sales = () => {
               </tbody>
             </table>
           </div>
-          <ShowDetails products={products} />
+          {/* si products tiene datos, muestra el componente ShowDetails */}
+          <ShowDetails products={products} /> 
         </div>
       </div>
     </>
