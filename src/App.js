@@ -7,6 +7,7 @@ import Cart from './components/Cart';
 import {Home} from './components/admin/Home';
 import Sales from './components/admin/Sales';
 import { useState, useEffect } from 'react';
+import Add from './components/admin/Add';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -77,6 +78,7 @@ function App() {
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/admin/products" element={<Home />} />
+        <Route path="/admin/products/add" element={<Add getProducts={getProducts} />} />
         <Route path="/admin/sales" element={<Sales />} />
         <Route path="/logout" element={<Login />} />
       </Routes>
