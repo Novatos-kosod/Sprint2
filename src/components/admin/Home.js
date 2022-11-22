@@ -20,6 +20,21 @@ export const Home = () => {
             setProducts(data)
         }).catch(err => console.log(err))
   };
+   /**
+    * Editar un producto.
+    * @param {Number} id
+   */
+  const patchProduct = (id) => {
+    fetch(`http://localhost:3001/productos/${id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("Producto editado");
+        getProducts();
+      });
+  };
 
   /**
     * Elimina un producto.
@@ -53,6 +68,7 @@ export const Home = () => {
                   <th>Name</th>
                   <th>Price</th>
                   <th>Actions</th>
+                  <th>Editar</th>
                 </tr>
               </thead>
               <tbody>
@@ -63,6 +79,11 @@ export const Home = () => {
                       <td>{product.price}</td>
                       <td>
                         <button className="btn btn-danger" onClick={() => deleteProduct(product.id)}>Delete</button>
+                      </td>
+                      <td>
+                      <Link to={`/admin/products/edit/${product.id}`} className="btn btn-primary mb-3">
+                         Editar 
+                      </Link>
                       </td>
                     </tr>
                   ))

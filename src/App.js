@@ -8,6 +8,7 @@ import {Home} from './components/admin/Home';
 import Sales from './components/admin/Sales';
 import { useState, useEffect } from 'react';
 import Add from './components/admin/Add';
+import Edit from './components/admin/Edit';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -79,6 +80,7 @@ function App() {
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/admin/products" element={<Home />} />
         <Route path="/admin/products/add" element={<Add getProducts={getProducts} />} />
+        <Route path="/admin/products/edit/:id" element={<Edit getProducts={getProducts} />} />
         <Route path="/admin/sales" element={<Sales />} />
         <Route path="/logout" element={<Login />} />
       </Routes>

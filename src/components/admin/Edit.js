@@ -1,40 +1,49 @@
 import React from 'react'
 
-const Add = (props) => {
+const Edit = (props) => {
     const { getProducts } = props;
 
-     // regisra un producto
-  const saveProduct = (e) => {
-    e.preventDefault();
-    const product = {
-      name: e.target.name.value,
-      urlImagen: e.target.urlImagen.value,
-      features: e.target.features.value,
-      price: e.target.price.value,
-      description: e.target.description.value,
-      cantidad: e.target.stock.value,
-    };
+     // Edita un producto
+     const saveProduct = (id) =>  {
+      id.setProduct();
     
-    fetch("http://localhost:3001/productos", {
-    method: "POST",
+    
+    fetch("http://localhost:3001/productos/id", {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    
   })
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      alert("Producto agregado");
+      alert("Producto editado");
       getProducts();
     }
     );
   };
+  funcion obtenerdatos (){
+    var Name = document.getElementById("Name").value;
+    var Price = document.getElementById("Price").value;
+    var Image = document.getElementById("Image").value;
+    var Description = document.getElementById("Description").value;
+    var stock = document.getElementById("stock").value;
+
+    document.regitro.Name.value = Name;
+    document.regitro.Price.value = Price;
+    document.regitro.Image.value = Image;
+    document.regitro.Description.value = Description;
+    document.regitro.stock.value = stock;
+
+  };
   return (
     <>
         <div className="container py-4 ">
-        <h2>Agregar producto</h2>
             <div className="row justify-content-center">
+            <div className="col-md-4">
+              <h2>Editar producto</h2>
+              <div className="row justify-content-center">
             <div className="col-md-4">
             <form onSubmit={saveProduct}>
               <label htmlFor="name">Name</label>
@@ -63,7 +72,7 @@ const Add = (props) => {
 
               <label htmlFor="urlImagen">Image</label>
               <input
-                className="img-fluid"
+                className="form-control"
                 type="text"
                 name="urlImagen"
                 id="urlImagen"
@@ -71,11 +80,9 @@ const Add = (props) => {
 
               <label htmlFor="description">Description</label>
               <textarea
-                type="text"
                 className="form-control"
                 name="description"
                 id="description"
-                required minlength="8" maxlength="30" size="10"
               ></textarea> 
               
               <label htmlFor="stock">stock</label>
@@ -85,12 +92,12 @@ const Add = (props) => {
                 name="stock"
                 id="stock"
               />
-
               <button className="btn btn-primary mt-4" type="submit">
-                Add Product
-                
+                Edit Product
               </button>
             </form>
+          </div>
+        </div>
           </div>
         </div>
         </div>
@@ -98,4 +105,4 @@ const Add = (props) => {
   )
 }
 
-export default Add
+export default Edit
