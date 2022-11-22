@@ -12,10 +12,10 @@ const Add = (props) => {
       features: e.target.features.value,
       price: e.target.price.value,
       description: e.target.description.value,
-      cantidad: e.target.stock.value,
+      stock: e.target.stock.value,
     };
     
-    fetch("http://localhost:5000/api/products", {
+    fetch("http://localhost:5000/api/product", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Add = (props) => {
 
               <label htmlFor="urlImagen">Image</label>
               <input
-                className="img-fluid"
+                className="form-control"
                 type="text"
                 name="urlImagen"
                 id="urlImagen"

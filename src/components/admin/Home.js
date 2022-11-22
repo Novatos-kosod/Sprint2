@@ -1,10 +1,6 @@
 import React, {useState,useEffect} from "react";
 import {Link} from "react-router-dom";
 
-export const idProducto = (id) => {
-  return id
- }
-
 export const Home = () => {
 
     const [products, setProducts] = useState([])
@@ -30,7 +26,7 @@ export const Home = () => {
     * @param {Number} id
   */
   const deleteProduct = (id) => {
-    fetch(`http://localhost:5000/api/products/${id}`, {
+    fetch(`http://localhost:5000/api/product/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -56,6 +52,7 @@ export const Home = () => {
                 <tr>
                   <th>Name</th>
                   <th>Price</th>
+                  <th>Stock</th>
                   <th>Actions</th>
                   <th>Editar</th>
                 </tr>
@@ -63,14 +60,22 @@ export const Home = () => {
               <tbody>
                 {
                   products.map((product) => (
-                    <tr key={product.id}> 
+                    <tr key={product._id}> 
                       <td>{product.name}</td>
                       <td>{product.price}</td>
                       <td>
-                        <button className="btn btn-danger" onClick={() => deleteProduct(product.id)}>Delete</button>
+                        {/* badges */}
+                        {product.stock > 0 ? (
+                          <span className="badge bg-success">{product.stock}</span>
+                        ) : (
+                          <span className="badge bg-danger">Sin stock</span>
+                        )}
                       </td>
                       <td>
-                      <Link to={`/admin/products/edit/${product.id}`} className="btn btn-primary mb-3" onClick={() => idProducto(product.id)}>
+                        <button className="btn btn-danger" onClick={() => deleteProduct(product._id)}>Delete</button>
+                      </td>
+                      <td>
+                      <Link to={`/admin/products/edit/${product._id}`} className="btn btn-primary mb-3">
                          Editar 
                       </Link>
                       </td>

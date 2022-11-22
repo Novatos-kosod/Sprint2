@@ -10,7 +10,7 @@ const ShowDetails = (props) => {
         <ul>
           {products.map((product) => (
             <li key={product.id}>
-             {product.name}
+             {product.product.name} - x{product.quantity} - ${product.product.price}
             </li>
           ))}
         </ul>
@@ -25,7 +25,7 @@ const Sales = () => {
 
   // llamada a la api para obtener las ventas
   useEffect(() => {
-    fetch("http://localhost:3001/ventas")
+    fetch("http://localhost:5000/api/sales")
       .then((res) => res.json())
       .then((data) => {
         setSales(data);
@@ -43,7 +43,6 @@ const Sales = () => {
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">Id</th>
                   <th scope="col">date</th>
                   <th scope="col">total</th>
                   <th scope="col">Actions</th>
@@ -51,10 +50,9 @@ const Sales = () => {
               </thead>
               <tbody>
                 {sales.map((sale) => (
-                  <tr key={sale.id}>
-                    <th scope="row">{sale.id}</th>
-                    <td>{sale.fecha}</td>
-                    <td>{sale.total}</td>
+                  <tr key={sale._id}>
+                    <td>{sale.date.slice(0, 10)}</td>
+                    <td>${sale.total}</td>
                     <td>
                       <button
                         className="btn btn-info"

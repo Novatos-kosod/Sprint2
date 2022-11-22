@@ -4,7 +4,7 @@ import Login from'./components/Login';
 import Navbar from './components/Navbar';
 import ListProducts from './components/ListProducts';
 import Cart from './components/Cart';
-import {Home,idProducto} from './components/admin/Home';
+import {Home} from './components/admin/Home';
 import Sales from './components/admin/Sales';
 import { useState, useEffect } from 'react';
 import Add from './components/admin/Add';
@@ -50,27 +50,28 @@ function App() {
    * @param {Object} product
    */
   const addToCart = (id) => {
-    const product = products.find((product) => product.id === id);
-    if (product) {
-      if (cart.find((product) => product.id === id)) { // si el producto ya esta en el carrito
-        setCart(
-          cart.map((product) => {
-            if (product.id === id) { 
-              product.quantity++;
-              localStorage.setItem("cart", JSON.stringify(cart)); // actualiza el carrito en el local storage
+    const product = products.find((product) => product._id === id);
+    let schema = {
+      item: {product},
+      quantity: 1,
+      }
+      if (product) {
+        if (cart.find((product) => product._id === id)) { // si el producto ya esta en el carrito
+          let newCart = cart.map((product) => {
+            if (product._id === id) {
+              product.quantity += 1;
             }
             return product;
-          })
-        );
-      } else {
-        setCart([...cart, { ...product, quantity: 1 }]); // agrega el producto al carrito
-        localStorage.setItem(
-          "cart",
-          JSON.stringify([...cart, { ...product, quantity: 1 }]) // actualiza el carrito en el local storage
-        );
+          });
+          setCart(newCart);
+          localStorage.setItem("cart", JSON.stringify(newCart));
+        } else {
+          setCart([...cart, schema]); // agrega el producto al carrito
+          localStorage.setItem("cart", JSON.stringify([...cart, schema])); // actualiza el carrito en el local storage
+        }
       }
     }
-  };
+
   return (
     <>
     <Navbar cart={cart} user={user} setUser={setUser} />
@@ -80,7 +81,7 @@ function App() {
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/admin/products" element={<Home />} />
         <Route path="/admin/products/add" element={<Add getProducts={getProducts} />} />
-        <Route path="/admin/products/edit/:id" element={<Edit getProducts={getProducts} idProducto={idProducto} />} />
+        <Route path="/admin/products/edit/:id" element={<Edit getProducts={getProducts} />} />
         <Route path="/admin/sales" element={<Sales />} />
         <Route path="/logout" element={<Login />} />
       </Routes>

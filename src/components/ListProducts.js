@@ -27,16 +27,17 @@ const ListProducts = (props) => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
-                  <p className="card-text">Precio: {product.price}</p>
+                  <p className="card-text">Precio: ${product.price}</p>
                   <p className="card-text">
                     Descripcion: {product.description}
                   </p>
-                  <p className="card-text">Cantidad: {product.stock}</p>
+                  <p className="card-text">Cantidad: {product.stock == 0 ? "Sin stock" : product.stock}</p>
                   <button
                     className="btn btn-primary"
-                    onClick={() => addToCart(product.id)}
+                    onClick={() => addToCart(product._id)}
+                    disabled={product.stock === 0 ? true : false}
                   >
-                    Agregar al carrito
+                    {product.stock === 0 ? "Sin stock" : "Agregar al carrito"}
                   </button>
                 </div>
               </div>

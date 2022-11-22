@@ -13,18 +13,18 @@ const Cart = (props) => {
     
     // borra un producto del carrito
     const deleteProduct = (id) => {
-        let newCart = cart.filter(product => product.id !== id)
+        let newCart = cart.filter(p => p.item.product._id !== id)
         setCart(newCart)
         localStorage.setItem('cart', JSON.stringify(newCart))
     }
 
     // actualiza la cantidad de productos en el carrito
     const onChangeQuantity = (id, quantity) => {
-        let newCart = cart.map(product => {
-            if(product.id === id && quantity <= product.stock) {
-                product.quantity = quantity
+        let newCart = cart.map(p => {
+            if(p.item.product._id === id && quantity <= p.item.product.stock) {
+              p.quantity = quantity
             }
-            return product
+            return p
         })
         if(quantity === 0) {
             deleteProduct(id)
@@ -39,51 +39,36 @@ const Cart = (props) => {
     */
     const getTotal = () => {
         let total = 0
-        cart.forEach(product => {
-            total += product.price * product.quantity
+        cart.forEach(p => {
+            total += p.item.product.price * p.quantity
         })
         setTotal(total)
-    }
-
-    // actualiza el stock de los productos
-    const updateStocks = () => {
-      cart.forEach(product => {
-        let newStock = product.cantidad - product.quantity
-        fetch(`http://localhost:3001/productos/${product.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({cantidad: newStock})
-      }) 
-      .catch(err => console.log(err))
-      })
     }
 
     // registra la compra
     const buy = () => {
       let newSales = {
         products: cart,
-        total: total,
-        fecha: new Date()
+        total: total
       }
-        fetch('http://localhost:3001/ventas', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newSales)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            updateStocks()
-            localStorage.removeItem('cart')
-            setCart([])
-            alert('Compra realizada con exito')
-        }
-        )
+      fetch('http://localhost:5000/api/sale', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newSales)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        localStorage.removeItem('cart')
+        setCart([])
+        alert('Compra realizada con éxito')
+      })
+      .catch(err => console.log(err))
     }
+
+
 
     useEffect(() => { 
         getTotal()  
@@ -108,19 +93,19 @@ const Cart = (props) => {
               <tbody>
           {
               cart.length > 0 ? (
-                cart.map((product) => (
-                  <tr key={product._id}>
-                    <td>{product.name}</td>
-                    <td>{product.price}</td>
+                cart.map((p) => (
+                  <tr key={p.item.product._id}>
+                    <td>{p.item.product.name}</td>
+                    <td>${p.item.product.price}</td>
                     <td>
                     {/* change quantity buttons */}
-                    <button className="btn btn-outline-info" onClick={() => onChangeQuantity(product.id, product.quantity - 1)}>-</button>
-                    <span className="mx-2">{product.quantity}</span>
-                    <button className="btn btn-outline-success" onClick={() => onChangeQuantity(product.id, product.quantity + 1)}>+</button>
+                    <button className="btn btn-outline-info" onClick={() => onChangeQuantity(p.item.product._id, p.quantity - 1)}>-</button>
+                    <span className="mx-2">{p.quantity}</span>
+                    <button className="btn btn-outline-success" onClick={() => onChangeQuantity(p.item.product._id, p.quantity + 1)}>+</button>
                     </td>
-                    <td>{product.price * product.quantity}</td>
+                    <td>${p.item.product.price * p.quantity}</td>
                     <td>
-                      <button className="btn btn-danger" onClick={() => deleteProduct(product.id)}>
+                      <button className="btn btn-danger" onClick={() => deleteProduct(p.item.product._id)}>
                         <i className="fa fa-trash"></i>
                       </button>
                     </td>

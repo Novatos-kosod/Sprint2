@@ -1,21 +1,34 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import {useParams, Link} from 'react-router-dom'
 
 const Edit = (props) => {
-    const { getProducts,idProducto } = props;
-    const [product, setProduct] = React.useState({});
+    const [product, setProduct] = useState({})
+    const { getProducts } = props;
+    
+    // extrae el id de la url
+    const { id } = useParams();
+    // busca el producto con el id extraido
 
-    React.useEffect(() => {
-        fetch(`http://localhost:5000/api/products/${idProducto}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setProduct(data);
-            });
-    }, [idProducto]);
+    const getProduct = async () => {
+        const res = await fetch(`http://localhost:5000/api/product/${id}`);
+        const data = await res.json();
+        setProduct(data);
+    };
 
-    const editProduct = (e) => {
+    // actualiza un producto
+    const updateProduct = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:5000/api/products/${idProducto}`, {
-            method: "PATCH",
+        const product = {
+            name: e.target.name.value,
+            urlImagen: e.target.urlImagen.value,
+            features: e.target.features.value,
+            price: e.target.price.value,
+            description: e.target.description.value,
+            stock: e.target.stock.value,
+        };
+
+        fetch(`http://localhost:5000/api/product/${id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -24,9 +37,15 @@ const Edit = (props) => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                alert("Producto editado");
-            });
-    }
+                alert("Producto actualizado");
+                getProducts();
+            }
+            );
+    };
+
+    useEffect(() => {
+        getProduct();
+    }, []);
 
   return (
     <>
@@ -34,14 +53,14 @@ const Edit = (props) => {
               <h2>Editar producto</h2>
               <div className="row justify-content-center">
             <div className="col-md-4">
-            <form onSubmit={editProduct}>
+            <form onSubmit={updateProduct}>
               <label htmlFor="name">Name</label>
               <input
                 className="form-control"
                 type="text"
                 name="name"
                 id="name"
-                value={product.name}
+                defaultValue={product.name}
               />
 
               <label htmlFor="features">Features</label>
@@ -50,6 +69,7 @@ const Edit = (props) => {
                 type="text"
                 name="features"
                 id="features"
+                defaultValue={product.features}
               />
 
               <label htmlFor="price">Price</label>
@@ -58,6 +78,7 @@ const Edit = (props) => {
                 type="text"
                 name="price"
                 id="price"
+                defaultValue={product.price}
               />
 
               <label htmlFor="urlImagen">Image</label>
@@ -66,6 +87,7 @@ const Edit = (props) => {
                 type="text"
                 name="urlImagen"
                 id="urlImagen"
+                defaultValue={product.urlImagen}
               />
 
               <label htmlFor="description">Description</label>
@@ -73,7 +95,8 @@ const Edit = (props) => {
                 className="form-control"
                 name="description"
                 id="description"
-              ></textarea> 
+                defaultValue={product.description}
+              ></textarea>
               
               <label htmlFor="stock">stock</label>
               <input
@@ -81,10 +104,14 @@ const Edit = (props) => {
                 type="text"
                 name="stock"
                 id="stock"
+                defaultValue={product.stock}
               />
               <button className="btn btn-primary mt-4" type="submit">
                 Edit Product
               </button>
+              <Link to="/admin/products" className="btn btn-link mt-4">
+                Go back
+              </Link>
             </form>
           </div>
         </div>
