@@ -21,7 +21,7 @@ const Cart = (props) => {
     // actualiza la cantidad de productos en el carrito
     const onChangeQuantity = (id, quantity) => {
         let newCart = cart.map(product => {
-            if(product.id === id && quantity <= product.cantidad) {
+            if(product.id === id && quantity <= product.stock) {
                 product.quantity = quantity
             }
             return product
@@ -109,7 +109,7 @@ const Cart = (props) => {
           {
               cart.length > 0 ? (
                 cart.map((product) => (
-                  <tr key={product.id}>
+                  <tr key={product._id}>
                     <td>{product.name}</td>
                     <td>{product.price}</td>
                     <td>

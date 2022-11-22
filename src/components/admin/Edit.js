@@ -1,57 +1,47 @@
 import React from 'react'
 
 const Edit = (props) => {
-    const { getProducts } = props;
+    const { getProducts,idProducto } = props;
+    const [product, setProduct] = React.useState({});
 
-     // Edita un producto
-     const saveProduct = (id) =>  {
-      id.setProduct();
-    
-    
-    fetch("http://localhost:3001/productos/id", {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      alert("Producto editado");
-      getProducts();
+    React.useEffect(() => {
+        fetch(`http://localhost:3001/productos/${idProducto}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setProduct(data);
+            });
+    }, [idProducto]);
+
+    const editProduct = (e) => {
+        e.preventDefault();
+        fetch(`http://localhost:3001/productos/${idProducto}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                alert("Producto editado");
+            });
     }
-    );
-  };
-  funcion obtenerdatos (){
-    var Name = document.getElementById("Name").value;
-    var Price = document.getElementById("Price").value;
-    var Image = document.getElementById("Image").value;
-    var Description = document.getElementById("Description").value;
-    var stock = document.getElementById("stock").value;
 
-    document.regitro.Name.value = Name;
-    document.regitro.Price.value = Price;
-    document.regitro.Image.value = Image;
-    document.regitro.Description.value = Description;
-    document.regitro.stock.value = stock;
-
-  };
   return (
     <>
         <div className="container py-4 ">
-            <div className="row justify-content-center">
-            <div className="col-md-4">
               <h2>Editar producto</h2>
               <div className="row justify-content-center">
             <div className="col-md-4">
-            <form onSubmit={saveProduct}>
+            <form onSubmit={editProduct}>
               <label htmlFor="name">Name</label>
               <input
                 className="form-control"
                 type="text"
                 name="name"
                 id="name"
+                value={product.name}
               />
 
               <label htmlFor="features">Features</label>
@@ -99,8 +89,6 @@ const Edit = (props) => {
           </div>
         </div>
           </div>
-        </div>
-        </div>
     </>
   )
 }

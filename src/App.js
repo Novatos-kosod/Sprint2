@@ -4,7 +4,7 @@ import Login from'./components/Login';
 import Navbar from './components/Navbar';
 import ListProducts from './components/ListProducts';
 import Cart from './components/Cart';
-import {Home} from './components/admin/Home';
+import {Home,idProducto} from './components/admin/Home';
 import Sales from './components/admin/Sales';
 import { useState, useEffect } from 'react';
 import Add from './components/admin/Add';
@@ -38,7 +38,7 @@ function App() {
    *  los guarda en el estado products.
    */
   const getProducts = () => {
-    fetch("http://localhost:3001/productos")
+    fetch("http://localhost:5000/api/products")
         .then(res => res.json())
         .then(data => {
             setProducts(data)
@@ -80,7 +80,7 @@ function App() {
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/admin/products" element={<Home />} />
         <Route path="/admin/products/add" element={<Add getProducts={getProducts} />} />
-        <Route path="/admin/products/edit/:id" element={<Edit getProducts={getProducts} />} />
+        <Route path="/admin/products/edit/:id" element={<Edit getProducts={getProducts} idProducto={idProducto} />} />
         <Route path="/admin/sales" element={<Sales />} />
         <Route path="/logout" element={<Login />} />
       </Routes>

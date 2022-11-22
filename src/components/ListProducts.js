@@ -18,7 +18,7 @@ const ListProducts = (props) => {
       <div className="container py-4">
         <div className="row">
           {products.map((product) => (
-            <div className="col-md-3" key={product.id}>
+            <div className="col-md-3" key={product._id}>
               <div className="card mt-2 py-4" style={{ width: "17rem" }}>
                 <img
                   className="img-fluid"
@@ -31,7 +31,7 @@ const ListProducts = (props) => {
                   <p className="card-text">
                     Descripcion: {product.description}
                   </p>
-                  <p className="card-text">Cantidad: {product.cantidad}</p>
+                  <p className="card-text">Cantidad: {product.stock}</p>
                   <button
                     className="btn btn-primary"
                     onClick={() => addToCart(product.id)}

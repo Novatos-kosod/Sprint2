@@ -1,6 +1,10 @@
 import React, {useState,useEffect} from "react";
 import {Link} from "react-router-dom";
 
+export const idProducto = (id) => {
+  return id
+ }
+
 export const Home = () => {
 
     const [products, setProducts] = useState([])
@@ -19,21 +23,6 @@ export const Home = () => {
         .then(data => {
             setProducts(data)
         }).catch(err => console.log(err))
-  };
-   /**
-    * Editar un producto.
-    * @param {Number} id
-   */
-  const patchProduct = (id) => {
-    fetch(`http://localhost:3001/productos/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Producto editado");
-        getProducts();
-      });
   };
 
   /**
@@ -81,7 +70,7 @@ export const Home = () => {
                         <button className="btn btn-danger" onClick={() => deleteProduct(product.id)}>Delete</button>
                       </td>
                       <td>
-                      <Link to={`/admin/products/edit/${product.id}`} className="btn btn-primary mb-3">
+                      <Link to={`/admin/products/edit/${product.id}`} className="btn btn-primary mb-3" onClick={() => idProducto(product.id)}>
                          Editar 
                       </Link>
                       </td>
