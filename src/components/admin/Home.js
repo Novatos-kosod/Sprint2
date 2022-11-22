@@ -18,7 +18,7 @@ export const Home = () => {
    *  los guarda en el estado products.
    */
   const getProducts = () => {
-    fetch("http://localhost:3001/productos")
+    fetch("http://localhost:5000/api/products")
         .then(res => res.json())
         .then(data => {
             setProducts(data)
@@ -30,7 +30,7 @@ export const Home = () => {
     * @param {Number} id
   */
   const deleteProduct = (id) => {
-    fetch(`http://localhost:3001/productos/${id}`, {
+    fetch(`http://localhost:5000/api/products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

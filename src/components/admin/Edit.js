@@ -5,7 +5,7 @@ const Edit = (props) => {
     const [product, setProduct] = React.useState({});
 
     React.useEffect(() => {
-        fetch(`http://localhost:3001/productos/${idProducto}`)
+        fetch(`http://localhost:5000/api/products/${idProducto}`)
             .then((res) => res.json())
             .then((data) => {
                 setProduct(data);
@@ -14,7 +14,7 @@ const Edit = (props) => {
 
     const editProduct = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3001/productos/${idProducto}`, {
+        fetch(`http://localhost:5000/api/products/${idProducto}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

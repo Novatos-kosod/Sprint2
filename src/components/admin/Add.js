@@ -15,7 +15,7 @@ const Add = (props) => {
       cantidad: e.target.stock.value,
     };
     
-    fetch("http://localhost:3001/productos", {
+    fetch("http://localhost:5000/api/products", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
