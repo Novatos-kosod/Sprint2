@@ -28,7 +28,7 @@ const Edit = (props) => {
         };
 
         fetch(`http://localhost:5000/api/product/${id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },

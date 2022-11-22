@@ -1,6 +1,5 @@
 import react from "react";
 import { useNavigate } from "react-router-dom";
-import Users from "./users.json";
 
 function Login(props) {
   const navigate = useNavigate();
@@ -10,32 +9,42 @@ function Login(props) {
    * Verifica que el usuario y la contraseña sean correctos.
    * @param {Object} e
    */
+
   const login = (e) => {
     e.preventDefault();
-    const user = Users.users.find(
-      (user) =>
-        user.email === e.target.email.value &&
-        user.password === e.target.password.value
-    );
-
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      if (user.role === "admin") {
-        navigate("/admin/products");
-      } else {
-        navigate("/");
-      }
-    } else {
-      alert("Invalid credentials");
-    }
+    const user = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          alert(data.message);
+        } else {
+          setUser(data);
+          localStorage.setItem("user", JSON.stringify(data));
+          if (data.role === "Admin") {
+            navigate("/admin/products");
+          } else {
+            navigate("/");
+          }
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="row justify-content-center py-4">
       <div className="col-md-3">
         <form onSubmit={login}>
-        <label htmlFor="usuario">User</label>
+        <label htmlFor="email">User</label>
           <input className="form-control" name="email" type="email" />
           <label htmlFor="password">Password</label>
           <input className="form-control" name="password" type="password" />

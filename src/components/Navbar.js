@@ -30,7 +30,7 @@ const Navbar = (props) => {
               </li>
               {user ? (
                 <>
-                  {user.role === "admin" && (
+                  {user.role === "Admin" && (
                     <>
                     <li className="nav-item">
                       <Link className="nav-link" to="/admin/products">

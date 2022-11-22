@@ -9,7 +9,7 @@ const ShowDetails = (props) => {
         <h3>Details</h3>
         <ul>
           {products.map((product) => (
-            <li key={product.id}>
+            <li key={product._id}>
              {product.product.name} - x{product.quantity} - ${product.product.price}
             </li>
           ))}
