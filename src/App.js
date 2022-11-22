@@ -56,12 +56,12 @@ function App() {
       quantity: 1,
       }
       if (product) {
-        if (cart.find((product) => product._id === id)) { // si el producto ya esta en el carrito
-          let newCart = cart.map((product) => {
-            if (product._id === id) {
-              product.quantity += 1;
+        if (cart.find((p) => p.item.product._id === id)) { // si el producto ya esta en el carrito
+          let newCart = cart.map((p) => {
+            if (p.item.product._id === id && p.quantity < p.item.product.stock) {
+              p.quantity += 1;
             }
-            return product;
+            return p;
           });
           setCart(newCart);
           localStorage.setItem("cart", JSON.stringify(newCart));
