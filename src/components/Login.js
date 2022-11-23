@@ -16,7 +16,7 @@ function Login(props) {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    fetch("http://localhost:5000/api/login", {
+    fetch("https://backend-shop2.herokuapp.com/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

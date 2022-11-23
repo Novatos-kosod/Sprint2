@@ -38,7 +38,7 @@ function App() {
    *  los guarda en el estado products.
    */
   const getProducts = () => {
-    fetch("http://localhost:5000/api/products")
+    fetch("https://backend-shop2.herokuapp.com/api/products")
         .then(res => res.json())
         .then(data => {
             setProducts(data)

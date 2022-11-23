@@ -10,7 +10,7 @@ const Edit = (props) => {
     // busca el producto con el id extraido
 
     const getProduct = async () => {
-        const res = await fetch(`http://localhost:5000/api/product/${id}`);
+        const res = await fetch(`https://backend-shop2.herokuapp.com/api/product/${id}`);
         const data = await res.json();
         setProduct(data);
     };
@@ -27,7 +27,7 @@ const Edit = (props) => {
             stock: e.target.stock.value,
         };
 
-        fetch(`http://localhost:5000/api/product/${id}`, {
+        fetch(`https://backend-shop2.herokuapp.com/api/product/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -39,6 +39,9 @@ const Edit = (props) => {
                 console.log(data);
                 alert("Producto actualizado");
                 getProducts();
+            }
+            ).catch((error) => {
+                console.log(error);
             }
             );
     };
@@ -101,7 +104,7 @@ const Edit = (props) => {
               <label htmlFor="stock">stock</label>
               <input
                 className="form-control"
-                type="text"
+                type="number"
                 name="stock"
                 id="stock"
                 defaultValue={product.stock}

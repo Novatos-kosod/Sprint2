@@ -51,7 +51,7 @@ const Cart = (props) => {
         products: cart,
         total: total
       }
-      fetch('http://localhost:5000/api/sale', {
+      fetch('https://backend-shop2.herokuapp.com/api/sale', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

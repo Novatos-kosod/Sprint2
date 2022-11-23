@@ -14,7 +14,7 @@ export const Home = () => {
    *  los guarda en el estado products.
    */
   const getProducts = () => {
-    fetch("http://localhost:5000/api/products")
+    fetch("https://backend-shop2.herokuapp.com/api/products")
         .then(res => res.json())
         .then(data => {
             setProducts(data)
@@ -26,7 +26,7 @@ export const Home = () => {
     * @param {Number} id
   */
   const deleteProduct = (id) => {
-    fetch(`http://localhost:5000/api/product/${id}`, {
+    fetch(`https://backend-shop2.herokuapp.com/api/product/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

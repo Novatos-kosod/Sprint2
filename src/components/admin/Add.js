@@ -15,7 +15,7 @@ const Add = (props) => {
       stock: e.target.stock.value,
     };
     
-    fetch("http://localhost:5000/api/product", {
+    fetch("https://backend-shop2.herokuapp.com/api/product", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
