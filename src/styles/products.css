@@ -1,0 +1,9 @@
+.img-fluid {
+    width: 200px;
+    height: 200px;
+    /* adaptar al contenedor */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
